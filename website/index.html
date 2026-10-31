@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechSaathi — Download the App</title>
+  <meta name="description" content="Download TechSaathi — Technology Made Simple. Independence Made Possible." />
+  <link rel="icon" href="assets/app_logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <main class="hero">
+    <img
+      class="logo"
+      src="assets/app_logo.png"
+      alt="TechSaathi logo"
+      width="132"
+      height="132"
+    />
+
+    <h1 class="brand">TechSaathi</h1>
+    <p class="tagline">Technology Made Simple. Independence Made Possible.</p>
+
+    <a
+      class="download"
+      href="TechSaathi.apk"
+      download="TechSaathi.apk"
+      id="downloadBtn"
+    >
+      Download the application
+    </a>
+
+    <p class="hint">Android APK · Works on phone, tablet, or computer</p>
+  </main>
+
+  <script>
+    // Ensure browsers that ignore the download attribute still navigate to the file.
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+      // Native download attribute handles most cases; this helps some mobile browsers.
+      this.blur();
+    });
+  </script>
+</body>
+</html>
