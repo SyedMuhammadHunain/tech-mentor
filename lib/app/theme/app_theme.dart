@@ -1,84 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
-/// TechSaathi Light Mode Accessible ThemeData.
-class AppTheme {
-  AppTheme._();
-
-  static ThemeData get lightTheme {
-    return ThemeData(
+abstract final class AppTheme {
+  static ThemeData get light {
+    final base = ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      scaffoldBackgroundColor: AppColors.primaryBackground,
-      colorScheme: const ColorScheme.light(
-        primary: AppColors.primaryBrand,
-        secondary: AppColors.secondaryTeal,
-        surface: AppColors.secondaryBackground,
-        error: AppColors.danger,
+      scaffoldBackgroundColor: AppColors.primaryBg,
+      colorScheme: ColorScheme.light(
+        primary: AppColors.primary,
         onPrimary: Colors.white,
-        onSecondary: AppColors.primaryText,
-        onSurface: AppColors.primaryText,
-        onError: Colors.white,
+        secondary: AppColors.secondaryTeal,
+        onSecondary: AppColors.textPrimary,
+        surface: AppColors.secondaryBg,
+        onSurface: AppColors.textPrimary,
+        error: AppColors.danger,
+        outline: AppColors.border,
+      ),
+    );
+
+    return base.copyWith(
+      textTheme: GoogleFonts.notoSansTextTheme(base.textTheme).apply(
+        bodyColor: AppColors.textPrimary,
+        displayColor: AppColors.textPrimary,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.primaryBackground,
+        backgroundColor: AppColors.primaryBg,
+        foregroundColor: AppColors.textPrimary,
         elevation: 0,
         centerTitle: false,
-        iconTheme: IconThemeData(color: AppColors.primaryText, size: 28),
         titleTextStyle: TextStyle(
-          color: AppColors.primaryText,
+          color: AppColors.textPrimary,
           fontSize: 22,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
         ),
       ),
-      cardTheme: CardTheme(
-        color: AppColors.secondaryBackground,
+      cardTheme: CardThemeData(
+        color: AppColors.secondaryBg,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: AppColors.border, width: 1.2),
+          side: const BorderSide(color: AppColors.border),
         ),
-        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        margin: EdgeInsets.zero,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryBrand,
+          backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          minimumSize: const Size(56, 56), // Strict accessibility target
+          minimumSize: const Size(56, 56),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          textStyle: GoogleFonts.notoSans(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primaryBrand,
+          foregroundColor: AppColors.primary,
           minimumSize: const Size(56, 56),
-          side: const BorderSide(color: AppColors.primaryBrand, width: 1.5),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          textStyle: GoogleFonts.notoSans(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.primary,
+          minimumSize: const Size(48, 48),
+          textStyle: GoogleFonts.notoSans(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.secondaryBackground,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        fillColor: AppColors.secondaryBg,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.border, width: 1.2),
+          borderSide: const BorderSide(color: AppColors.border),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.border, width: 1.2),
+          borderSide: const BorderSide(color: AppColors.border),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.primaryBrand, width: 2),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
+        hintStyle: GoogleFonts.notoSans(
+          fontSize: 17,
+          color: AppColors.textSecondary,
+        ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppColors.secondaryBg,
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.textSecondary,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+        selectedLabelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        unselectedLabelStyle: TextStyle(fontSize: 13),
+      ),
+      dividerTheme: const DividerThemeData(
+        color: AppColors.border,
+        thickness: 1,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.textPrimary,
+        contentTextStyle: GoogleFonts.notoSans(fontSize: 16, color: Colors.white),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
